@@ -5,10 +5,14 @@ import styles from "./register.style";
 import { Link } from "@react-navigation/native";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from 'react-native-toast-message'
 import {
   registerFailed,
   registerSuccess,
 } from "../../redux/Auth/registerSlice";
+import Constants from 'expo-constants';
+
+const apiUrl = Constants.expoConfig.extra.API_URL;
 
 const Register = () => {
   const [isFocused, SetIsFocused] = useState(null);
@@ -30,9 +34,13 @@ const Register = () => {
     } else {
       const data = { name, email, password };
       axios
-        .post("http://62.72.24.89:5000/auth/register", data)
+        .post(`${apiUrl}/auth/register`, data)
         .then((response) => {
           dispatch(registerSuccess(response.data));
+          Toast.show({
+            type: 'success',
+            text1: 'Berhasil melakukan registrasi akun',
+          });
           setErrorMessage("");
           console.log(response.data);
         })
@@ -135,7 +143,7 @@ const Register = () => {
         <View style={styles.submit}>
           <TouchableHighlight
             onPress={handleRegistration}
-            underlayColor="#818cf8"
+            underlayColor="#0F766E"
             style={styles.btnSignIn}
           >
             <View>
@@ -148,12 +156,14 @@ const Register = () => {
             </Text>
             <Link
               to={{ screen: "Login" }}
-              style={{ color: "#818cf8", fontFamily: "bold", fontSize: 15 }}
+              style={{ color: "#14B8A6", fontFamily: "bold", fontSize: 15 }}
             >
               Let's Sign In
             </Link>
           </View>
         </View>
+
+        <Toast />
       </SafeAreaView>
   </KeyboardAvoidingView>
   );

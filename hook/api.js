@@ -2,8 +2,6 @@ import axios from "axios";
 import Constants from 'expo-constants';
 
 const apiUrl = Constants.expoConfig.extra.API_URL;
-// const apiUrl = Constants.extra.API_URL;
-
 
 export const getDataPost = async () => {
   const data = await axios.get(`${apiUrl}/post/allpost`);

@@ -26,12 +26,14 @@ const Home = ({navigation}) => {
   const screenH = Dimensions.get('window').height
   
   const data = [
-    { id: '1', image: require('../../assets/fix/promo.png') },
+    { id: 0, image: require('../../assets/fix//gunung/ungaran-01.jpeg') },
+    { id: 1, image: require('../../assets/fix//gunung/ungaran-02.jpeg') },
+    { id: 2, image: require('../../assets/fix//gunung/ungaran-03.jpeg') },
   ];
 
   const renderImageItem = ({ item }) => (
     <View>
-      <Image source={item.image} style={{ height: 140,  width: screenwidth-20, borderRadius: 20  }} />
+      <Image source={item.image} style={{ height: 220,  width: screenwidth-20, borderRadius: 20, marginRight: 10  }} />
     </View>
   );
 
@@ -40,22 +42,19 @@ const Home = ({navigation}) => {
       <SafeAreaView>
         <View style={{ margin: 10 }}>
           <StatusBar style="dark" />
-          
-          <View style={{ display: 'flex', gap: 10, flexDirection: 'row', alignItems: 'center' }}>
-            <Image source={require('../../assets/fix/icon/logo-mount.png')} style={{ width: 24, height: 24 }} />
-            <Text style={{ fontStyle: 'italic', color: '#404040' }}>Gunung Ungaran</Text>
-          </View>
 
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 18 }}>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 8 }}>
               <Text style={{ fontSize: 24, fontWeight: '300' }}>Let's</Text>
-              <Text style={{ fontSize: 24, color: '#10B981', fontWeight: '900' }}>Explore</Text>
+              <Text style={{ fontSize: 24, color: '#0D9488', fontWeight: '900' }}>Explore</Text>
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center' }}>
               <Pressable onPress={() => navigation.navigate({
                 name: 'AddAnggota'
               })}>
-                <Image source={require('../../assets/fix/icon/tiket-icon.png')} style={{ width: 40, height: 40 }}/>
+                <View style={{ width: 34, height: 28 }}>
+                  <Image source={require('../../assets/fix/icon/tiket-icon.png')} style={{ width: '100%', height: '100%' }}/>
+                </View>
               </Pressable>
               <Image source={require('../../assets/fix/icon/avatar.png')} style={{ width: 48, height: 48 }}/>
             </View>
@@ -67,42 +66,44 @@ const Home = ({navigation}) => {
               renderItem={renderImageItem}
               keyExtractor={(item) => item.id}
               horizontal={true} // setel ke true untuk mendapatkan daftar gambar horizontal
-              scrollEnabled={false}
+              scrollEnabled={true}
+              showsHorizontalScrollIndicator={false}
+
             />
           </View>
 
           <View style={{ display: 'flex', gap: 10 }}>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Menu</Text>
-            <View style={{ flexDirection: 'row', display: 'flex', gap: 10, flexWrap: 'wrap', height: screenH }}>
+            <View style={{ flexDirection: 'row', display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', height: screenH }}>
               <Pressable onPress={() => navigation.navigate({
                 name: 'InfoDetailGunung',
                 params: { idMount: '65ac1082ab0b9e96cd47b0cc' }
-              })} style={{ width: '30%', display: 'flex', alignItems: 'center', gap: 5 }}>
-                <View style={{ display: 'flex', width: '100%', backgroundColor: '#6366F1', justifyContent: 'center', borderRadius: 8, padding: 20, height: 80, alignItems: 'center' }}>
-                  <Image source={require('../../assets/fix/icon/menu/mount-filled.png')} style={{ width: 25 }} />
+              })} style={{ width: '45%', display: 'flex', alignItems: 'center', gap: 5 }}>
+                <View style={{ display: 'flex', width: '100%', overflow: 'hidden', justifyContent: 'center', borderRadius: 8, height: '45%', alignItems: 'center' }}>
+                  <Image source={require('../../assets/fix/gunung/detail.png')}  />
+                  <Text style={{ textAlign: 'center', position: 'absolute', color: '#fff', fontFamily: 'bold' }}>Informasi Detail Gunung</Text>
                 </View>
-                <Text style={{ textAlign: 'center' }}>Informasi Detail Gunung</Text>
               </Pressable>
-              <Pressable onPress={() => alert('no-route')} style={{ width: '30%', display: 'flex', alignItems: 'center', gap: 5  }}>
-                <View style={{ display: 'flex', width: '100%', backgroundColor: '#6366F1', justifyContent: 'center', borderRadius: 8, padding: 20, height: 80, alignItems: 'center' }}>
-                  <Image source={require('../../assets/fix/icon/menu/rute.png')} style={{ width: 25 }} />
+              <Pressable onPress={() => navigation.navigate({ name: 'Rute' })} style={{ width: '45%', display: 'flex', alignItems: 'center', gap: 5  }}>
+                <View style={{ display: 'flex', width: '100%', overflow: 'hidden', justifyContent: 'center', borderRadius: 8, height: '45%', alignItems: 'center' }}>
+                  <Image source={require('../../assets/fix/gunung/rute.png')}/>
+                  <Text style={{ textAlign: 'center', position: 'absolute', color: '#fff', fontFamily: 'bold' }}>Rute Pendakian Gunung</Text>
                 </View>
-                <Text style={{ textAlign: 'center' }}>Rute Pendakian Gunung</Text>
               </Pressable>
-              <Pressable onPress={() => navigation.navigate({ name: 'SyaratPendakian' })} style={{ width: '30%', display: 'flex', alignItems: 'center', gap: 5  }}>
-                <View style={{ display: 'flex', width: '100%', backgroundColor: '#6366F1', justifyContent: 'center', borderRadius: 8, padding: 20, height: 80, alignItems: 'center' }}>
-                  <Image source={require('../../assets/fix/icon/menu/sewa.png')} style={{ width: 25 }} />
+              <Pressable onPress={() => navigation.navigate({ name: 'SyaratPendakian' })} style={{ width: '45%', display: 'flex', alignItems: 'center', gap: 5  }}>
+                <View style={{ display: 'flex', width: '100%', overflow: 'hidden',justifyContent: 'center', borderRadius: 8, height: '45%', alignItems: 'center' }}>
+                  <Image source={require('../../assets/fix/gunung/syarat.png')}/>
+                  <Text style={{ textAlign: 'center', position: 'absolute', color: '#fff', fontFamily: 'bold' }}>Syarat Pendakian</Text>
                 </View>
-                <Text style={{ textAlign: 'center' }}>Syarat Pendakian</Text>
               </Pressable>
               <Pressable onPress={() => navigation.navigate({
                 name: 'InfoReservasi',
                 params: { idMount: '65ac1082ab0b9e96cd47b0cc' }
-              })} style={{ width: '30%', display: 'flex', alignItems: 'center', gap: 5  }}>
-                <View style={{ display: 'flex', width: '100%', backgroundColor: '#6366F1', justifyContent: 'center', borderRadius: 8, padding: 20, height: 80, alignItems: 'center' }}>
-                  <Image source={require('../../assets/fix/icon/menu/reservasi.png')} style={{ width: 25 }} />
+              })} style={{ width: '45%', display: 'flex', alignItems: 'center', gap: 5  }}>
+                <View style={{ display: 'flex', width: '100%', overflow: 'hidden', justifyContent: 'center', borderRadius: 8, height: '45%', alignItems: 'center' }}>
+                  <Image source={require('../../assets/fix/gunung/reservasi.png')}/>
+                  <Text style={{ textAlign: 'center', position: 'absolute', color: '#fff', fontFamily: 'bold' }}>Reservasi</Text>
                 </View>
-                <Text>Reservasi</Text>
               </Pressable>
             </View>
           </View>

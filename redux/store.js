@@ -12,8 +12,6 @@ export const store = configureStore({
     auth: authReducer,
     registration: registerReducer,
     users: usersReducer,
-    allpost: allpostReducer,
-    searchdata: searchdatauserReducer,
     reservasi: reservasiReducer,
     create: createreservasiReducer
   },

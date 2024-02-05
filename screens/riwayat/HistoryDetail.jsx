@@ -14,7 +14,7 @@ const HistoryDetail = ({ route }) => {
   
   const screenH = Dimensions.get("window").height
 
-  const [ dataDetail, setDataDetail ] = useState()
+  const [ dataDetail, setDataDetail ] = useState(null)
 
 //   console.log(getIdRiwayat);
 
@@ -29,6 +29,8 @@ const HistoryDetail = ({ route }) => {
         console.log(err.response.status);
     })
   }, [dataDetail])
+
+//   console.log(dataDetail.check_in);
 
   const renderItem = ({ item }) => (
     <View style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
@@ -48,9 +50,10 @@ const HistoryDetail = ({ route }) => {
   return (
     <View style={styles.container}>
         <View style={styles.wrapper}>
-            <View style={styles.konten}>
+            {dataDetail !== null && (
+                <View style={styles.konten}>
                 <View style={{ position: 'absolute', top: 0, right: 0, backgroundColor: dataDetail?.status_pembayaran === 'pending' ? '#e5e5e5': '#059669', paddingHorizontal: 18, paddingVertical: 4, borderRadius: 20, margin: 16 }}>
-                    <Text style={{ color: dataDetail?.status_pembayaran === 'pending' ? '#525252': '#e5e5e5', fontFamily: 'semibold' }}>{dataDetail?.status_pembayaran}</Text>
+                    <Text style={{ color: dataDetail?.status_pembayaran === 'pending' ? '#525252': '#fff', fontFamily: 'semibold' }}>{dataDetail?.status_pembayaran}</Text>
                 </View>
                 
                 <View>
@@ -59,8 +62,8 @@ const HistoryDetail = ({ route }) => {
                 </View>
 
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-                  <Text style={{ borderRadius: 14, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 14, paddingVertical: 4, borderWidth: 1 }}>{dataDetail?.jumlah_pendaki} pendaki</Text>
-                  <Text style={{ borderRadius: 14, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 14, paddingVertical: 4, borderWidth: 1 }}>{dataDetail?.durasi_pendakian}</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 14, paddingVertical: 4, borderWidth: 2 }}>{dataDetail?.jumlah_pendaki} pendaki</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 14, paddingVertical: 4, borderWidth: 2 }}>{dataDetail?.durasi_pendakian}</Text>
                 </View>
 
 
@@ -77,11 +80,11 @@ const HistoryDetail = ({ route }) => {
                 </View>
                 
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
-                    <View style={{ borderWidth: 1, borderColor: '#ef4444', paddingHorizontal: 14, paddingVertical: 4, borderRadius: 20  }}>
-                        <Text style={{ color: 'red', fontFamily: 'bold' }}>belum check-in</Text>
+                    <View style={{ borderWidth: 2, borderColor: '#7c3aed', paddingHorizontal: 14, paddingVertical: 4, borderRadius: 20  }}>
+                        <Text style={{ color: '#6d28d9', fontFamily: 'bold' }}>{dataDetail?.check_in !== null ? moment(dataDetail.check_in).format("LLL") : 'belum check-in'}</Text>
                     </View>
-                    <View style={{ borderWidth: 1, borderColor: '#ef4444', paddingHorizontal: 14, paddingVertical: 4, borderRadius: 20  }}>
-                        <Text style={{ color: 'red', fontFamily: 'bold' }}>belum check-out</Text>
+                    <View style={{ borderWidth: 2, borderColor: '#7c3aed', paddingHorizontal: 14, paddingVertical: 4, borderRadius: 20  }}>
+                        <Text style={{ color: '#6d28d9', fontFamily: 'bold' }}>{dataDetail?.check_out !== null ? moment(dataDetail.check_out).format("LLL") : 'belum check-out'}</Text>
                     </View>
                 </View>
                 
@@ -93,7 +96,8 @@ const HistoryDetail = ({ route }) => {
                     nestedScrollEnabled={true}
                     showsVerticalScrollIndicator={false}
                 />  
-            </View>
+                </View>
+            )}
         </View>
     </View>
   )

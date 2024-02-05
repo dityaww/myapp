@@ -7,9 +7,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
-import MenuNavigation from "./navigation/MenuNavigation";
-
-
 import EditProfile from "./screens/edit-profile/EditProfile";
 import Login from "./screens/login/Login";
 import Register from "./screens/register/Register";
@@ -18,7 +15,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 import InfoReservasi from "./screens/menu/info-reservasi/InfoReservasi";
-import { InfoGunung } from "./screens";
+import { InfoGunung, InfoRute, Notification } from "./screens";
 import AddAnggota from "./screens/add-anggota/AddAnggota";
 import HistoryOrder from "./screens/riwayat/HistoryOrder";
 import Checkout from "./screens/checkout/Checkout";
@@ -28,6 +25,7 @@ import SyaratPendakian from "./screens/menu/syarat_pendakian/SyaratPendakian";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/FiraSans-Regular.ttf"),
     medium: require("./assets/fonts/FiraSans-Medium.ttf"),
@@ -70,6 +68,7 @@ export default function App() {
             options={{
               headerBackVisible: false,
               headerShown: false,
+              presentation: 'modal'
             }}
           />
 
@@ -79,6 +78,7 @@ export default function App() {
             options={{
               headerBackVisible: false,
               headerShown: false,
+              presentation: 'modal'
             }}
           />
 
@@ -157,6 +157,16 @@ export default function App() {
             options={{
               headerBackVisible: true,
               headerTitle: "Informasi Syarat Pendakian",
+              headerShown: true
+            }}
+          />
+          
+          <Stack.Screen
+            name="Rute"
+            component={InfoRute}
+            options={{
+              headerBackVisible: true,
+              headerTitle: "Informasi Rute Pendakian",
               headerShown: true
             }}
           />

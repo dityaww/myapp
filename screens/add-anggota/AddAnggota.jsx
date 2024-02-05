@@ -6,6 +6,7 @@ import axios from 'axios';
 import Constants from 'expo-constants';
 import { useEffect } from 'react';
 import { getReservasiSuccess } from '../../redux/Reservasi/reservasiSlice';
+import moment from 'moment/moment';
 
 const AddAnggota = ({ route, navigation }) => {
   const apiUrl = Constants.expoConfig.extra.API_URL;
@@ -115,9 +116,9 @@ const AddAnggota = ({ route, navigation }) => {
         if(err.response.status === 400){
           alert('user ini sudah diinputkan')
 
-          navigation.navigate({
-            name: 'checkout'
-          })
+          // navigation.navigate({
+          //   name: 'checkout'
+          // })
         } else{
           alert('gagal tambah data anggota')
         }
@@ -129,9 +130,6 @@ const AddAnggota = ({ route, navigation }) => {
       alert('pindah ke cekoout')
     }
   } 
-
-
-  // console.log(detailPendaki);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -146,17 +144,17 @@ const AddAnggota = ({ route, navigation }) => {
                 gap: 10
               }}>
                 <View>
-                  <Text style={{ color: '#404040', fontSize: 20, fontFamily: 'bold'}}>Gunung {dataReservasi?.mount?.gunung}</Text>
+                  <Text style={{ color: '#404040', fontSize: 20, fontFamily: 'bold', textTransform: 'capitalize'}}>Gunung {dataReservasi?.mount?.gunung}</Text>
                   <Text style={{ color: "#404040" }}>via {dataReservasi?.mount?.basecamp}</Text>
                 </View>
                 
                 <View>
-                  <Text style={{ fontStyle: 'italic' }}>tanggal pendakian {dataReservasi?.tanggal_pendakian}</Text>
+                  <Text style={{ fontStyle: 'italic' }}>tanggal pendakian {moment(dataReservasi?.tanggal_pendakian).format('DD-MM-YYYY')}</Text>
                 </View>
 
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-                  <Text style={{ borderRadius: 16, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 1 }}>{dataReservasi?.jumlah_pendaki} pendaki</Text>
-                  <Text style={{ borderRadius: 16, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 1 }}>{dataReservasi?.durasi_pendakian}</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 2 }}>{dataReservasi?.jumlah_pendaki} pendaki</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 2 }}>{dataReservasi?.durasi_pendakian}</Text>
                 </View>
                 
                 <View style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -180,7 +178,7 @@ const AddAnggota = ({ route, navigation }) => {
                 <View style={{ marginVertical: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
               
                   <Pressable onPress={handleAddInput} style={{ display: 'flex', flexDirection: 'row', marginBottom: 10 }}>
-                    <View style={{ paddingHorizontal: 28, paddingVertical: 10, borderRadius: 20, backgroundColor: '#6366F1' }}>
+                    <View style={{ paddingHorizontal: 28, paddingVertical: 10, borderRadius: 20, backgroundColor: '#0D9488' }}>
                       <Text style={{ color: '#fff' }}>Tambah Anggota</Text>
                     </View>
                   </Pressable>
@@ -204,7 +202,7 @@ const AddAnggota = ({ route, navigation }) => {
 
               </View>
 
-              <View style={{ padding: 24, backgroundColor: '#6366F1', borderBottomEndRadius: 14, borderBottomStartRadius: 14, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <View style={{ padding: 24, backgroundColor: '#0F766E', borderBottomEndRadius: 14, borderBottomStartRadius: 14, display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text style={{ color: '#fff', fontStyle: 'italic' }}>Subtotal</Text>
                   <Text style={{ color: '#fff', fontFamily: 'bold' }}>{new Intl.NumberFormat('id-ID', {
@@ -212,8 +210,8 @@ const AddAnggota = ({ route, navigation }) => {
                     currency: 'IDR',
                   }).format(parseFloat(dataReservasi?.pembayaran?.total_tiket))}</Text>
                 </View>
-                <Pressable onPress={handleSubmit} style={{ borderRadius: 14, backgroundColor: '#fff', display: 'flex', alignItems: 'center', paddingVertical: 8 }}>
-                  <Text style={{ textTransform: 'uppercase', color: '#6366F1', fontFamily: 'bold' }}>checkout</Text>
+                <Pressable onPress={handleSubmit} style={{ borderRadius: 14, backgroundColor: '#fff', display: 'flex', alignItems: 'center', paddingVertical: 16 }}>
+                  <Text style={{ textTransform: 'uppercase', color: '#0F766E', fontFamily: 'bold' }}>checkout</Text>
                 </Pressable>
               </View>
             </View>

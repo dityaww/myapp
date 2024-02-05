@@ -12,7 +12,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./login.style";
 import { Link } from "@react-navigation/native";
-
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess, loginFailed } from "../../redux/Auth/authSlice";
 import axios from "axios";
@@ -141,11 +140,11 @@ const Login = ({navigation}) => {
         <View style={styles.submit}>
           <TouchableHighlight
             onPress={handleLogin}
-            underlayColor="#818cf8"
+            underlayColor="#0F766E"
             style={styles.btnSignIn}
           >
             <View>
-              <Text style={{ color: "#fff", fontFamily: "bold" }}>Sign In</Text>
+              <Text style={{ color: "#ffffff", fontFamily: "bold", textTransform: 'uppercase' }}>Sign In</Text>
             </View>
           </TouchableHighlight>
           <View style={styles.link}>
@@ -154,13 +153,14 @@ const Login = ({navigation}) => {
             </Text>
             <Link
               to={{ screen: "Register" }}
-              style={{ color: "#818cf8", fontFamily: "bold", fontSize: 15 }}
+              style={{ color: "#14B8A6", fontFamily: "bold", fontSize: 15 }}
             >
               Register Now
             </Link>
           </View>
         </View>
       </SafeAreaView>
+
   </KeyboardAvoidingView>
   );
 };

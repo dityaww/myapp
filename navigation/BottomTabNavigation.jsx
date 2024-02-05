@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Menu, Profile, UploadContent } from "../screens";
+import { Home, About, Profile, UploadContent } from "../screens";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../constants/theme";
+import { BlurView } from '@react-native-community/blur';
 
-import MenuNavigation from "./MenuNavigation";
-import SearchNavigation from "./SearchNavigation";
+import NotifikasiNavigation from "./NotifikasiNavigation";
 import ProfileNavigation from "./ProfileNavigation";
 
 const Tab = createBottomTabNavigator();
@@ -18,117 +18,97 @@ const screenOptions = {
   tabBarStyle: {
     position: "static",
     bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
     right: 0,
     left: 0,
     elevation: 30,
     height: 80,
-    borderTopWidth: 1,
-    // backgroundColor: "#047857",
+    backgroundColor: "#f5f5f5",
   },
-};
-
-const isLogin = () => {
-  return true;
 };
 
 const BottomTabNavigation = () => {
   return (
-    <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "home" : "home-outline"}
-                size={24}
-                color={
-                  focused ? COLORS.bottomTabActive : COLORS.bottomTabPasive
-                }
-              />
-            );
-          },
-          headerShown: false,
-          headerTitle: "Feeds",
-        }}
-      />
+    <Tab.Navigator 
+      screenOptions={screenOptions}>
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name={focused ? "home" : "home-outline"}
+                  size={24}
+                  color={
+                    focused ? '#0F766E' : COLORS.bottomTabPasive
+                  }
+                />
+              );
+            },
+            headerShown: false,
+            headerTitle: "Feeds",
+          }}
+        />
 
-      {/* <Tab.Screen
-        name="Menu"
-        component={MenuNavigation}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "grid" : "grid-outline"}
-                size={24}
-                color={
-                  focused ? COLORS.bottomTabActive : COLORS.bottomTabPasive
-                }
-              />
-            );
-          },
-          // headerShown: true,
-        }}
-      /> */}
+        <Tab.Screen
+          name="NotifikasiStack"
+          component={NotifikasiNavigation}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name={focused ? "notifications" : "notifications-outline"}
+                  size={24}
+                  color={
+                    focused ? '#0F766E' : COLORS.bottomTabPasive
+                  }
+                />
+              );
+            },
+          }}
+        />
 
-      {/* <Tab.Screen
-        name="UploadContent"
-        component={UploadContent}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "add-circle" : "add-circle-outline"}
-                size={30}
-                color={
-                  focused ? COLORS.bottomTabActive : COLORS.bottomTabPasive
-                }
-              />
-            );
-          },
-          headerShown: true,
-        }}
-      />
+        <Tab.Screen
+          name="About"
+          component={About}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name={focused ? "information-circle" : "information-circle-outline"}
+                  size={30}
+                  color={
+                    focused ? '#0F766E' : COLORS.bottomTabPasive
+                  }
+                />
+              );
+            },
+            headerShown: true,
+            headerTitle: 'Pusat Bantuan'
+          }}
+        />
 
-      <Tab.Screen
-        name="Search"
-        component={SearchNavigation}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "search" : "search-outline"}
-                size={30}
-                color={
-                  focused ? COLORS.bottomTabActive : COLORS.bottomTabPasive
-                }
-              />
-            );
-          },
-        }}
-      /> */}
-
-      <Tab.Screen
-        name="Profile"
-        component={ProfileNavigation}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={focused ? "person" : "person-outline"}
-                size={24}
-                color={
-                  focused ? COLORS.bottomTabActive : COLORS.bottomTabPasive
-                }
-              />
-            );
-          },
-          // headerShown: true,
-          headerTitleAlign: "left",
-        }}
-      />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileNavigation}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Ionicons
+                  name={focused ? "person" : "person-outline"}
+                  size={24}
+                  color={
+                    focused ? '#0F766E' : COLORS.bottomTabPasive
+                  }
+                />
+              );
+            },
+            // headerShown: true,
+            headerTitleAlign: "left",
+          }}
+        />
     </Tab.Navigator>
   );
 };

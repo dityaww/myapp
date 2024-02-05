@@ -82,8 +82,8 @@ const Checkout = ({ navigation }) => {
                 </View>
                 
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-                  <Text style={{ borderRadius: 16, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 1 }}>{dataReservasi?.jumlah_pendaki} pendaki</Text>
-                  <Text style={{ borderRadius: 16, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 1 }}>{dataReservasi?.durasi_pendakian}</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#22c55e', color: '#059669', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 2 }}>{dataReservasi?.jumlah_pendaki} pendaki</Text>
+                  <Text style={{ borderRadius: 14, borderColor: '#0ea5e9', color: '#0284c7', fontFamily: 'bold', paddingHorizontal: 18, paddingVertical: 4, borderWidth: 2 }}>{dataReservasi?.durasi_pendakian}</Text>
                 </View>
 
                 <View style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
@@ -109,7 +109,7 @@ const Checkout = ({ navigation }) => {
                 />  
 
                 <View>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#4f46e5', padding: 12, borderRadius: 8 }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#0D9488', padding: 12, borderRadius: 8 }}>
                         <Text style={{ textTransform: 'uppercase', fontFamily: 'bold', color: '#fff' }}>subtotal</Text>
                         <Text style={{ fontFamily: 'bold', color: '#fff' }}>{new Intl.NumberFormat('id-ID', {
                                 style: 'currency',
@@ -120,7 +120,7 @@ const Checkout = ({ navigation }) => {
 
 
                 <Pressable onPress={submit}>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#10B981', padding: 12, borderRadius: 8 }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#0F766E', padding: 16, borderRadius: 8 }}>
                         <Text style={{ textTransform: 'uppercase', fontFamily: 'bold', color: '#fff' }}>bayar</Text>
                     </View>
                 </Pressable>

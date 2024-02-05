@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     height: 250,
   },
   btnLogin: {
-    backgroundColor: "#6366f1",
+    backgroundColor: "#0D9488",
     paddingVertical: 10,
     width: 120,
     justifyContent: "center",

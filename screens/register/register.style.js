@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         gap: 20
     },
     btnSignIn: {
-        backgroundColor: "#6366F1",
+        backgroundColor: "#0D9488",
         paddingVertical: 16,
         borderRadius: 120 / 2,
         display: "flex",
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     focusedTextInput: {
-        borderColor: '#818cf8',
+        borderColor: '#14B8A6',
         borderWidth: 2
     }
 })

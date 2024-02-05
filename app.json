@@ -7,9 +7,9 @@
     "icon": "./assets/fix/icon/logo-mount.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash-img.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/fix/icon/logo-mount.png",
+      "resizeMode": "center",
+      "backgroundColor": "#0F766E"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -56,7 +56,13 @@
       "eas": {
         "projectId": "7fe84369-f018-4b79-b250-bfc213dff3fe"
       },
-      "API_URL": "http://62.72.24.89:5000"
+      "API_URL": "https://api.gunungungaran.site"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7fe84369-f018-4b79-b250-bfc213dff3fe"
     }
   }
 }

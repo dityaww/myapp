@@ -16,13 +16,16 @@ const InfoReservasi = ({ route, navigation }) => {
   const apiUrl = Constants.expoConfig.extra.API_URL;
   const idGunung = route.params?.idMount;
 
-  console.log("id-gunung", idGunung);
+  // console.log("id-gunung", idGunung);
 
   const [postData, setPostData] = useState(null)
   
   // date-picker
   const [date, setDate] = useState(new Date());
+
   const [hikeDate, setHikeDate] = useState('')
+  const [hikeDateReverse, setHikeDateReverse] = useState('')
+
   const [showPicker, setShowPicker] = useState(false)
 
   // data-inputan
@@ -40,7 +43,9 @@ const InfoReservasi = ({ route, navigation }) => {
 
   const confirmIOSDate = () => {
     const formatDate = moment(date).format('DD-MM-YYYY')
+    const formatDateReverse = moment(date).format('YYYY-MM-DD')
     setHikeDate(formatDate)
+    setHikeDateReverse(formatDateReverse)
     toggleDatePicker()
   }
 
@@ -48,11 +53,13 @@ const InfoReservasi = ({ route, navigation }) => {
     if (type == 'set') {
       const currentDate = selectedDate
       const formattedDate = moment(currentDate).format('DD-MM-YYYY')
+      const formatDateReverse = moment(date).format('YYYY-MM-DD')
       setDate(currentDate)
 
       if(Platform.OS === 'android'){
         toggleDatePicker()
         setHikeDate(formattedDate)
+        setHikeDateReverse(formatDateReverse)
       }
     } else{
       toggleDatePicker()
@@ -87,15 +94,12 @@ const InfoReservasi = ({ route, navigation }) => {
       })
     }
   }, [postData])
-  
-
-  console.log(postData);
 
   const submit = () => {
     if(selector.token !== null){
       const data = {
         jumlah_pendaki: Number(jmlPendaki),
-        tanggal_pendakian: hikeDate,
+        tanggal_pendakian: hikeDateReverse,
         durasi_pendakian: durasiPendakian,
         total: total
       }
@@ -214,10 +218,6 @@ const InfoReservasi = ({ route, navigation }) => {
           </View>
         </Pressable>
       </View>
-
-
-
-
         <View style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           <Text style={{
               color: '#404040',
@@ -226,11 +226,11 @@ const InfoReservasi = ({ route, navigation }) => {
             }}>Total</Text>
           
           <Text
-            style={{ borderWidth: 1, borderColor: '#6ee7b7',  color: '#059669', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 10, fontWeight: 'bold' }}
+            style={{ borderWidth: 2, borderColor: '#0D9488',  color: '#0F766E', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 10, fontWeight: 'bold' }}
           >{formatIDR}</Text>
         </View>
 
-        <Pressable onPress={submit} style={{ backgroundColor: '#6366F1', display: 'flex', alignItems: 'center', padding: 14, borderRadius: 10}}>
+        <Pressable onPress={submit} style={{ backgroundColor: '#0F766E', display: 'flex', alignItems: 'center', padding: 14, borderRadius: 10}}>
           <Text style={{ color: '#fff', textTransform: 'uppercase', fontWeight: 'bold' }}>reservasi sekarang</Text>
         </Pressable>
 

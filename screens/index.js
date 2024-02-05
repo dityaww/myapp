@@ -18,6 +18,9 @@ import InfoBooking from "./menu/info-booking/InfoBooking";
 // Profile
 import Cart from "./add-anggota/AddAnggota";
 
+import Notification from "./notif/Notification";
+import About from "./about/About";
+
 export {
   Home,
   Menu,
@@ -31,5 +34,7 @@ export {
   SearchUser,
   DetailUsers,
   DetailPost,
-  Cart
+  Cart,
+  Notification,
+  About
 };

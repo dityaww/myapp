@@ -10,18 +10,14 @@ import React, { useState, useEffect } from "react";
 import styles from "./edit.style";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS, SIZES } from "../../constants/theme";
-import * as ImagePicker from "expo-image-picker";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Constants from 'expo-constants';
+import Toast from 'react-native-toast-message'
 
 const EditProfile = ({ navigation }) => {
   const apiUrl = Constants.expoConfig.extra.API_URL;
 
-  const [image, setImage] = useState(
-    "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-  );
   const [dataUsers, setDataUsers] = useState([])
   const [nama, setNama] = useState()
   const [email, setEmail] = useState()
@@ -90,46 +86,13 @@ const EditProfile = ({ navigation }) => {
     }).then((res) => {
       console.log('resp:', res.data)
       console.log('sukses edit data!')
+      Toast.show({
+        type: 'success',
+        text1: 'Berhasil melakukan edit data',
+      });
     })
     .catch((err) => console.log("error-req", err.response.data))
   }
-
-  // const pickImage = async () => {
-  //   // No permissions request is necessary for launching the image library
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
-  //     allowsEditing: true,
-  //     aspect: [4, 3],
-  //     quality: 1,
-  //   });
-
-  //   delete result.cancelled;
-
-  //   if (!result.canceled) {
-  //     setImage(result.assets[0].uri);
-
-  //     const apiUrl = 'http://62.72.24.89:5000/user/updateavatar/'
-  //     const formData = new FormData()
-  //     const fileName = result.assets[0].uri.split('/').pop()
-
-  //     formData.append('media', {
-  //       uri: result.assets[0].uri,
-  //       type: result.assets[0].type,
-  //       name: fileName
-  //     })
-
-  //     axios.post(apiUrl, formData, {
-  //       headers: {
-  //         'authorization': `${selector.token}`,
-  //         'Content-Type': 'multipart/form-data'
-  //       },
-  //     }).then((response) => console.log(response.data.data)).catch((error) => {
-  //       console.log("API errors: ", error);
-  //     })
-  //   }
-
-  //   console.log(result);
-  // };
 
   return (
     <SafeAreaView style={{ backgroundColor: "#ffffff", flex: 1 }}>
@@ -143,8 +106,8 @@ const EditProfile = ({ navigation }) => {
               <Text style={styles.fieldsTitle}>Kode Pendaki</Text>
               <Text style={{ fontStyle: 'italic', fontFamily: 'regular', fontSize: 10, color: '#262626', color: 'red' }}>(not editable)</Text>
             </View>
-            <View style={{ marginTop: 10, borderWidth: 1, borderColor: '#f97316', paddingVertical: 6, paddingHorizontal: 10, display: 'flex', alignItems: 'center', width: 120, borderRadius: 20 }}>
-              <Text style={{ color: "#ea580c", fontWeight: 'bold' }}>{kodePendaki || '-'}</Text>
+            <View style={{ marginTop: 10, borderWidth: 2, borderColor: '#14B8A6', paddingVertical: 6, paddingHorizontal: 10, display: 'flex', alignItems: 'center', width: 120, borderRadius: 20 }}>
+              <Text style={{ color: "#0D9488", fontWeight: 'bold' }}>{kodePendaki || '-'}</Text>
             </View>
           </View>
           
@@ -220,7 +183,7 @@ const EditProfile = ({ navigation }) => {
 
           <TouchableHighlight
             onPress={onSubmit}
-            underlayColor="#818cf8"
+            underlayColor="#0F766E"
             style={styles.btnEdited}
           >
             <View>
@@ -229,6 +192,7 @@ const EditProfile = ({ navigation }) => {
           </TouchableHighlight>
         </View>
       </View>
+      <Toast />
     </SafeAreaView>
   );
 };
